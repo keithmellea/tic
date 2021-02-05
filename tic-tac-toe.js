@@ -12,17 +12,25 @@ window.addEventListener('DOMContentLoaded', event => {
         xDiv.src = "https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-x.svg"
         const oDiv = document.createElement('img');
         oDiv.src = "https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-o.svg"
-        let turnCount = 0;
-        for (let i = 0; i < squares.length; i++){
-            let square = squares[i];
 
-            if(event.target === square && turnCount%2 !== 0){
-                square.appendChild(xDiv)
-            } else if(event.target === square && turnCount%2 === 0){
-                square.appendChild(oDiv)
+
+
+        function turn(click, squares. turnCount = 9) {
+
+
+
+            let turnCount = 0;
+            for (let i = 0; i < squares.length; i++) {
+                let square = squares[i];
+                if (event.target === square && turnCount % 2 !== 0) {
+                    square.appendChild(xDiv)
+                } else if (event.target === square && turnCount % 2 === 0) {
+                    square.appendChild(oDiv)
+                }
+                turnCount++;
+
             }
-            turnCount++;
-
+            return turn();
         }
 
     })
