@@ -1,31 +1,52 @@
-window.addEventListener('DOMContentLoaded', event => {
+window.addEventListener("DOMContentLoaded", (event) => {
+  const click = document.getElementById("tic-tac-toe-board");
+  console.log(click);
+  const squares = document.querySelectorAll(".square");
+  console.log(squares);
+
+  let currentPlayerSymbol = "x";
+  let squareValues = ["", "", "", "", "", "", "", "", ""];
+
+  click.addEventListener("click", (event) => {
+    const xDiv = document.createElement("img");
+    xDiv.src =
+      "https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-x.svg";
+    const oDiv = document.createElement("img");
+    oDiv.src =
+      "https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-o.svg";
+    let temp = event.target.id[event.target.id.length - 1];
+
+    if (
+      event.target.id.includes("square-") &&
+      squareValues[temp] === "" &&
+      currentPlayerSymbol === "x"
+    ) {
+      squareValues[temp] = currentPlayerSymbol;
+      currentPlayerSymbol = "o";
+      event.target.appendChild(xDiv);
+    } else if (
+      event.target.id.includes("square-") &&
+      squareValues[temp] === "" &&
+      currentPlayerSymbol === "o"
+    ) {
+      squareValues[temp] = currentPlayerSymbol;
+      currentPlayerSymbol = "x";
+      event.target.appendChild(oDiv);
+    }
 
 
-    // console.log(xDiv);
-    const click = document.getElementById("tic-tac-toe-board");
-    console.log(click)
-    const squares = document.querySelectorAll(".square");
-    console.log(squares)
-    click.addEventListener("click", event => {
-
-        const xDiv = document.createElement('img');
-        xDiv.src = "https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-x.svg"
-        const oDiv = document.createElement('img');
-        oDiv.src = "https://assets.aaonline.io/Module-DOM-API/formative-project-tic-tac-toe/player-o.svg"
-        let turnCount = 0;
-        for (let i = 0; i < squares.length; i++){
-            let square = squares[i];
-
-            if(event.target === square && turnCount%2 !== 0){
-                square.appendChild(xDiv)
-            } else if(event.target === square && turnCount%2 === 0){
-                square.appendChild(oDiv)
-            }
-            turnCount++;
-
-        }
-
-    })
 
 
-})
+    console.log(squares[temp]);
+    console.log(squareValues);
+  });
+
+  if (squareValues[0] !== "" && 
+  squareValues[0] === squareValues[1] && 
+  squareValues[0] === squareValues[2]) {
+      
+   alert('Winner = X')
+
+  }
+
+});
